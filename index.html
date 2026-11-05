@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PRISM ONE — Sound, in full colour</title>
-    <meta name="description" content="PRISM ONE. Graphene drivers, adaptive ANC and 60 hours of battery, wrapped in colour you can feel." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <title>PRISM ONE — High-Fidelity Spatial Headphones</title>
+    <meta
+      name="description"
+      content="PRISM ONE. 45 mm graphene ring-magnet drivers, dual S1 neural DSP silicon, and 60-hour battery sculpted from anodized aluminum and titanium."
+    />
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
@@ -17,142 +17,325 @@
       <span class="blob blob--cyan"></span>
       <span class="blob blob--lime"></span>
     </div>
+    <div class="studio-grid" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
 
     <canvas id="stage" aria-hidden="true"></canvas>
 
+    <!-- TOP FLOATING HUD -->
     <header class="nav">
-      <a class="logo" href="#top" aria-label="PRISM home">
+      <a class="logo" href="#top" aria-label="PRISM ONE home">
         <span class="logo__mark"></span>
         <span class="logo__text">PRISM</span>
+        <span class="logo__tag">ONE · GEN II</span>
       </a>
+
       <nav class="nav__links" aria-label="Primary">
-        <a href="#inside">Inside</a>
-        <a href="#features">Features</a>
-        <a href="#colours">Colours</a>
+        <a href="#inside">Anatomy</a>
+        <a href="#soundlab">Sound Lab</a>
+        <a href="#features">Acoustics</a>
+        <a href="#colours">Finish</a>
         <a href="#specs">Specs</a>
       </nav>
-      <a class="btn btn--primary nav__cta" href="#preorder">Pre-order · $349</a>
+
+      <div class="nav__right">
+        <button class="pill-btn" id="xrayToggle" type="button" aria-pressed="false" title="Toggle X-Ray shell view">
+          <span class="pill-btn__dot"></span>
+          <span>X-Ray</span>
+        </button>
+        <a class="btn btn--primary nav__cta" href="#preorder">Reserve · $549</a>
+      </div>
     </header>
+
+    <!-- PERSISTENT INTERACTIVE STUDIO DOCK -->
+    <aside class="dock" aria-label="Interactive 3D controls">
+      <div class="dock__group">
+        <span class="dock__label">STUDIO</span>
+        <button class="dock__btn is-active" type="button" data-action="assembled">Assembled</button>
+        <button class="dock__btn" type="button" data-action="explode">Explode Inside</button>
+        <button class="dock__btn" type="button" data-action="xray">X-Ray Shell</button>
+      </div>
+      <div class="dock__divider" aria-hidden="true"></div>
+      <div class="dock__swatches" role="group" aria-label="Quick finish selector">
+        <button class="dock__swatch is-active" type="button" data-colour="ultraviolet" style="--sw:#7c3aed" aria-label="Ultraviolet"></button>
+        <button class="dock__swatch" type="button" data-colour="magma" style="--sw:#f42c52" aria-label="Solar Magma"></button>
+        <button class="dock__swatch" type="button" data-colour="glacier" style="--sw:#0ea5e9" aria-label="Cryo Glacier"></button>
+        <button class="dock__swatch" type="button" data-colour="acid" style="--sw:#a3e635" aria-label="Hyper Acid"></button>
+        <button class="dock__swatch" type="button" data-colour="obsidian" style="--sw:#3b3e52" aria-label="Titanium Obsidian"></button>
+      </div>
+    </aside>
 
     <main id="top">
       <!-- HERO -->
       <section class="hero" data-stage="hero">
-        <div class="hero__copy">
-          <p class="eyebrow" data-reveal>Introducing PRISM ONE</p>
-          <h1 class="display" data-reveal>
-            <span class="line"><span>Sound,</span></span>
-            <span class="line"><span>in full</span></span>
-            <span class="line"><span class="grad">colour.</span></span>
-          </h1>
-          <p class="lede" data-reveal>
-            Graphene drivers tuned by ear, adaptive noise cancelling that
-            listens before you do, and sixty hours of battery. Built to be
-            heard — and seen.
-          </p>
-          <div class="hero__actions" data-reveal>
-            <a class="btn btn--primary" href="#preorder">Pre-order now</a>
-            <a class="btn btn--ghost" href="#inside">
-              See what's inside
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <div class="eyebrow-pill" data-reveal>
+              <span class="pulse-dot"></span>
+              <span>ACOUSTIC ARCHITECTURE · SERIES 01</span>
+            </div>
+            <h1 class="display" data-reveal>
+              <span class="line"><span>Sculpted</span></span>
+              <span class="line"><span>for pure</span></span>
+              <span class="line"><span class="grad">euphoria.</span></span>
+            </h1>
+            <p class="lede" data-reveal>
+              Precision-machined from solid 6061-T6 aluminum with a custom 45 mm graphene
+              ring-magnet driver and dual PRISM S1 silicon in each earcup.
+            </p>
+            <div class="hero__actions" data-reveal>
+              <a class="btn btn--primary" href="#inside">
+                Explore internal architecture
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 5v14m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+              <button class="btn btn--ghost" type="button" id="heroExplodeBtn">
+                Instant 3D Teardown
+              </button>
+            </div>
+
+            <div class="hero__metrics" data-reveal>
+              <div>
+                <strong>45 mm</strong>
+                <span>Graphene Driver</span>
+              </div>
+              <div>
+                <strong>-48 dB</strong>
+                <span>8-Mic Hybrid ANC</span>
+              </div>
+              <div>
+                <strong>60 hrs</strong>
+                <span>Lossless Battery</span>
+              </div>
+              <div>
+                <strong>0.008%</strong>
+                <span>Total Harmonic Distortion</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="hero__hint" aria-hidden="true">
-          <span class="hero__hint-line"></span>
-          <span>Scroll to explore</span>
+
+          <div class="hero__telemetry" data-reveal>
+            <div class="telemetry-card">
+              <div class="telemetry-card__top">
+                <span class="mono-tag">LIVE CAD TELEMETRY</span>
+                <span class="mono-status">DRAG MODEL TO ORBIT</span>
+              </div>
+              <div class="telemetry-card__row">
+                <span>ENCLOSURE</span>
+                <strong>Anodized Aluminum + Grade-5 Ti</strong>
+              </div>
+              <div class="telemetry-card__row">
+                <span>TRANSDUCER</span>
+                <strong>Dual N52 Ring Magnet · Copper Coil</strong>
+              </div>
+              <div class="telemetry-card__row">
+                <span>DSP ENGINE</span>
+                <strong>PRISM S1 · 96,000 ops/sec</strong>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- MARQUEE -->
       <div class="marquee" aria-hidden="true">
         <div class="marquee__track">
-          <span>40 mm graphene drivers</span><i></i>
-          <span>Adaptive ANC</span><i></i>
-          <span>60 h battery</span><i></i>
-          <span>Spatial audio</span><i></i>
-          <span>USB-C lossless</span><i></i>
-          <span>Forged titanium band</span><i></i>
-          <span>40 mm graphene drivers</span><i></i>
-          <span>Adaptive ANC</span><i></i>
-          <span>60 h battery</span><i></i>
-          <span>Spatial audio</span><i></i>
-          <span>USB-C lossless</span><i></i>
-          <span>Forged titanium band</span><i></i>
+          <span>45 mm graphene ring-magnet driver</span><i></i>
+          <span>Dual S1 neural DSP</span><i></i>
+          <span>8-mic adaptive ANC (-48 dB)</span><i></i>
+          <span>60 h battery · USB-C lossless</span><i></i>
+          <span>Forged titanium split-rail canopy</span><i></i>
+          <span>Magnetic knit cushions</span><i></i>
+          <span>45 mm graphene ring-magnet driver</span><i></i>
+          <span>Dual S1 neural DSP</span><i></i>
+          <span>8-mic adaptive ANC (-48 dB)</span><i></i>
+          <span>60 h battery · USB-C lossless</span><i></i>
+          <span>Forged titanium split-rail canopy</span><i></i>
+          <span>Magnetic knit cushions</span><i></i>
         </div>
       </div>
 
-      <!-- INSIDE / EXPLODED VIEW -->
+      <!-- INSIDE / EXPLODED ANATOMY -->
       <section class="inside" id="inside" data-stage="inside">
         <div class="inside__pin">
-          <div class="inside__head">
-            <p class="eyebrow" data-reveal>Inside &amp; out</p>
-            <h2 class="display display--md" data-reveal>Every layer,<br /><span class="grad">engineered.</span></h2>
-            <p class="lede" data-reveal>Keep scrolling to take PRISM ONE apart.</p>
+          <div class="inside__hud">
+            <div class="inside__head">
+              <p class="eyebrow">01 · INTERNAL ANATOMY</p>
+              <h2 class="display display--md">Seven layers of<br /><span class="grad">obsessive precision.</span></h2>
+              <p class="inside__sub">
+                Scroll, drag the disassembly slider, or select any internal subsystem below to
+                isolate and inspect the acoustic stack inside and out.
+              </p>
+
+              <!-- Interactive Manual Explode Scrubber -->
+              <div class="scrubber">
+                <div class="scrubber__top">
+                  <span class="mono-tag">DISASSEMBLY DEPTH</span>
+                  <span class="mono-val" id="explodePct">0%</span>
+                </div>
+                <input
+                  id="explodeRange"
+                  class="scrubber__range"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="0"
+                  aria-label="Disassembly depth percentage"
+                />
+              </div>
+
+              <!-- 7-Part Interactive Selector Chips -->
+              <div class="part-pills" role="tablist" aria-label="Internal headphone layers">
+                <button class="part-pill is-active" type="button" data-part-select="cushion"><span>01</span>Cushion</button>
+                <button class="part-pill" type="button" data-part-select="baffle"><span>02</span>Ti Baffle</button>
+                <button class="part-pill" type="button" data-part-select="driver"><span>03</span>45mm Driver</button>
+                <button class="part-pill" type="button" data-part-select="pcb"><span>04</span>S1 Silicon</button>
+                <button class="part-pill" type="button" data-part-select="battery"><span>05</span>Toroid Cell</button>
+                <button class="part-pill" type="button" data-part-select="chamber"><span>06</span>Vortex Chamber</button>
+                <button class="part-pill" type="button" data-part-select="shell"><span>07</span>Unibody Shell</button>
+              </div>
+
+              <!-- Live Inspector Readout Card -->
+              <div class="inspector-card" id="inspectorCard" aria-live="polite">
+                <div class="inspector-card__header">
+                  <span class="inspector-card__code" id="inspCode">LAYER 01 / 07</span>
+                  <span class="inspector-card__metric" id="inspMetric">360° Seal</span>
+                </div>
+                <h3 id="inspTitle">Magnetic Acoustic Knit Cushion</h3>
+                <p class="inspector-card__sub" id="inspSub">Viscoelastic memory foam · Micro-woven breathable mesh</p>
+                <p class="inspector-card__detail" id="inspDetail">
+                  Attaches via 8 neodymium alignment magnets with custom L/R acoustic scrim.
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div class="inside__progress" aria-hidden="true">
-            <span class="inside__progress-bar"></span>
-          </div>
-
-          <div class="labels" aria-live="polite">
-            <div class="label" data-part="shell" data-at="0.18">
+          <!-- 3D Projected Callout Pointers -->
+          <div class="labels" aria-hidden="true">
+            <div class="label" data-part="cushion" data-at="0.12">
               <span class="label__dot"></span>
               <span class="label__line"></span>
               <span class="label__card">
-                <strong>Aerospace aluminium shell</strong>
-                <small>CNC-milled, anodised in colour</small>
+                <em>01 · CUSHION</em>
+                <strong>Magnetic Knit Pad</strong>
+                <small>8 neodymium snaps · L/R scrim</small>
               </span>
             </div>
-            <div class="label" data-part="battery" data-at="0.34">
+            <div class="label" data-part="baffle" data-at="0.24">
               <span class="label__dot"></span>
               <span class="label__line"></span>
               <span class="label__card">
-                <strong>Ring battery</strong>
-                <small>60 h playback · 5 min = 4 h</small>
+                <em>02 · CHASSIS</em>
+                <strong>Grade-5 Titanium Baffle</strong>
+                <small>Optical ear-detection array</small>
               </span>
             </div>
-            <div class="label" data-part="driver" data-at="0.5">
+            <div class="label" data-part="driver" data-at="0.38">
               <span class="label__dot"></span>
               <span class="label__line"></span>
               <span class="label__card">
-                <strong>40 mm graphene driver</strong>
-                <small>5 Hz – 40 kHz, 0.02% THD</small>
+                <em>03 · TRANSDUCER</em>
+                <strong>45 mm Graphene Driver</strong>
+                <small>Dual N52 ring magnet · Copper coil</small>
               </span>
             </div>
-            <div class="label" data-part="grille" data-at="0.64">
+            <div class="label" data-part="pcb" data-at="0.52">
               <span class="label__dot"></span>
               <span class="label__line"></span>
               <span class="label__card">
-                <strong>Acoustic mesh &amp; ANC mics</strong>
-                <small>8-mic hybrid array</small>
+                <em>04 · COMPUTE</em>
+                <strong>PRISM S1 Neural Silicon</strong>
+                <small>10-core DSP · 96,000 ops/sec</small>
               </span>
             </div>
-            <div class="label" data-part="cushion" data-at="0.78">
+            <div class="label" data-part="battery" data-at="0.66">
               <span class="label__dot"></span>
               <span class="label__line"></span>
               <span class="label__card">
-                <strong>Memory-foam cushion</strong>
-                <small>Breathable knit, magnetic swap</small>
+                <em>05 · POWER</em>
+                <strong>Toroidal Silicon Battery</strong>
+                <small>60 h playback · 5 min = 5 h</small>
               </span>
             </div>
-            <div class="label" data-part="band" data-at="0.9">
+            <div class="label" data-part="chamber" data-at="0.78">
               <span class="label__dot"></span>
               <span class="label__line"></span>
               <span class="label__card">
-                <strong>Forged titanium headband</strong>
-                <small>Self-adjusting, 320 g total</small>
+                <em>06 · ACOUSTICS</em>
+                <strong>Vortex Rear Labyrinth</strong>
+                <small>Zero back-wave coloration</small>
+              </span>
+            </div>
+            <div class="label" data-part="shell" data-at="0.88">
+              <span class="label__dot"></span>
+              <span class="label__line"></span>
+              <span class="label__card">
+                <em>07 · ENCLOSURE</em>
+                <strong>Anodized Unibody Cup</strong>
+                <small>Optical Digital Crown + ANC button</small>
               </span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- FEATURES -->
+      <!-- INTERACTIVE SOUND LAB / ANC SIMULATOR -->
+      <section class="soundlab" id="soundlab" data-stage="soundlab">
+        <div class="soundlab__wrap">
+          <div class="soundlab__copy" data-reveal>
+            <p class="eyebrow">02 · INTERACTIVE SOUND LAB</p>
+            <h2 class="display display--md">See the silence.<br /><span class="grad">Feel the sub-bass.</span></h2>
+            <p class="lede">
+              Switch acoustic modes below to watch the real-time 96 kHz spectrum analyzer and
+              3D driver wave propagation adapt across the audible spectrum.
+            </p>
+            <div class="mode-tabs" role="tablist" aria-label="Acoustic mode">
+              <button class="mode-tab is-active" type="button" data-mode="anc">
+                <strong>Adaptive ANC</strong>
+                <span>-48 dB anti-phase cancellation</span>
+              </button>
+              <button class="mode-tab" type="button" data-mode="spatial">
+                <strong>Spatial Studio</strong>
+                <span>360° head-tracked soundstage</span>
+              </button>
+              <button class="mode-tab" type="button" data-mode="lossless">
+                <strong>Pure Lossless</strong>
+                <span>24-bit / 96 kHz reference curve</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="soundlab__stage" data-reveal>
+            <div class="osc-header">
+              <div>
+                <span class="mono-tag">REAL-TIME ACOUSTIC SPECTRUM</span>
+                <strong id="oscModeTitle">8-Mic Hybrid Anti-Phase Cancellation</strong>
+              </div>
+              <div class="osc-badges">
+                <span class="osc-badge" id="oscBadgeDb">-48.2 dB NOISE FLOOR</span>
+                <span class="osc-badge osc-badge--live">96 kHz LOCK</span>
+              </div>
+            </div>
+            <canvas id="eqCanvas" width="760" height="300" aria-label="Frequency response visualizer"></canvas>
+            <div class="osc-axis">
+              <span>10 Hz (Sub-bass)</span>
+              <span>120 Hz</span>
+              <span>1 kHz (Midrange)</span>
+              <span>8 kHz</span>
+              <span>48 kHz (Air)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BENTO FEATURES -->
       <section class="features" id="features" data-stage="features">
         <div class="section__head">
-          <p class="eyebrow" data-reveal>Features</p>
-          <h2 class="display display--md" data-reveal>Loud where it matters.<br /><span class="grad">Silent everywhere else.</span></h2>
+          <p class="eyebrow" data-reveal>03 · ACOUSTIC BREAKTHROUGHS</p>
+          <h2 class="display display--md" data-reveal>
+            Engineered like a<br /><span class="grad">studio monitor.</span>
+          </h2>
         </div>
 
         <div class="bento">
@@ -160,17 +343,22 @@
             <div class="card__viz card__viz--anc" aria-hidden="true">
               <span></span><span></span><span></span><span></span>
             </div>
-            <h3>Adaptive ANC</h3>
-            <p>Eight microphones sample your surroundings 48,000 times a second and cancel noise before it reaches you.</p>
-            <span class="card__stat">-45 dB</span>
+            <span class="card__kicker">HYBRID NOISE CANCELLATION</span>
+            <h3>48,000 samples per second.</h3>
+            <p>
+              Six outward-facing beamforming microphones and two inward ear-canal sensors cancel
+              jet-cabin roar and city wind before the sound wave reaches your eardrum.
+            </p>
+            <span class="card__stat">-48 dB</span>
           </article>
 
           <article class="card" data-reveal>
             <div class="card__viz card__viz--battery" aria-hidden="true">
               <span class="fill"></span>
             </div>
-            <h3>All week long</h3>
-            <p>A week of commutes on one charge. Five minutes on USB-C gives you four more hours.</p>
+            <span class="card__kicker">TOROIDAL SILICON BATTERY</span>
+            <h3>All week on a single charge.</h3>
+            <p>60 hours with Active Noise Cancellation enabled. Five minutes on USB-C adds five hours.</p>
             <span class="card__stat">60 h</span>
           </article>
 
@@ -180,16 +368,21 @@
               <span class="orbit orbit--2"><i></i></span>
               <span class="orbit orbit--3"><i></i></span>
             </div>
-            <h3>Spatial audio</h3>
-            <p>Head-tracked, room-aware. Sound stays where it was put — even when you don't.</p>
+            <span class="card__kicker">GYROSCOPIC HEAD TRACKING</span>
+            <h3>Cinema-scale spatial audio.</h3>
+            <p>Dual 6-axis accelerometers anchor vocals and instruments in 3D space as you move.</p>
           </article>
 
           <article class="card card--wide" data-reveal>
             <div class="card__viz card__viz--wave" aria-hidden="true">
               <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
             </div>
-            <h3>Lossless, wired or not</h3>
-            <p>24-bit / 96 kHz over USB-C, and PRISM-Link wireless at 1.2 Mbps when the cable's in your other bag.</p>
+            <span class="card__kicker">BIT-PERFECT TRANSMISSION</span>
+            <h3>True 24-bit / 96 kHz lossless.</h3>
+            <p>
+              Built-in audiophile DAC over USB-C plus ultra-wideband PRISM-Link wireless at
+              1.4 Mbps with sub-9 ms studio latency.
+            </p>
             <span class="card__stat">24-bit</span>
           </article>
 
@@ -197,63 +390,118 @@
             <div class="card__viz card__viz--touch" aria-hidden="true">
               <span class="ring"></span><span class="ring"></span><span class="ring"></span>
             </div>
-            <h3>Touch, tap, twist</h3>
-            <p>Capacitive cup controls with a haptic click. Twist the dial for volume. No menus.</p>
+            <span class="card__kicker">OPTICAL DIGITAL CROWN</span>
+            <h3>Turn for precision volume.</h3>
+            <p>Micro-knurled aluminum crown with hall-effect encoder and tactile haptic detents.</p>
           </article>
         </div>
       </section>
 
-      <!-- COLOURS -->
+      <!-- COLOURWAYS -->
       <section class="colours" id="colours" data-stage="colours">
         <div class="colours__copy">
-          <p class="eyebrow" data-reveal>Colourways</p>
-          <h2 class="display display--md" data-reveal>Pick your <span class="grad">frequency.</span></h2>
-          <p class="lede" data-reveal>Five anodised finishes. Each one matched to its own cushion knit and cable.</p>
+          <p class="eyebrow" data-reveal>04 · ANODIZED FINISHES</p>
+          <h2 class="display display--md" data-reveal>Five vibrant<br /><span class="grad">frequencies.</span></h2>
+          <p class="lede" data-reveal>
+            Every finish undergoes a 14-stage bead-blasting and deep-dye anodization bath,
+            color-matched to its woven canopy and magnetic cushions.
+          </p>
 
           <div class="swatches" role="radiogroup" aria-label="Colourway">
-            <button class="swatch is-active" role="radio" aria-checked="true" data-colour="ultraviolet" style="--c:#7c3aed;--c2:#c084fc"><span></span>Ultraviolet</button>
-            <button class="swatch" role="radio" aria-checked="false" data-colour="magma" style="--c:#ff2d6f;--c2:#ff8a3d"><span></span>Magma</button>
-            <button class="swatch" role="radio" aria-checked="false" data-colour="glacier" style="--c:#00d4ff;--c2:#7af9ff"><span></span>Glacier</button>
-            <button class="swatch" role="radio" aria-checked="false" data-colour="acid" style="--c:#b8ff2e;--c2:#5ef0a0"><span></span>Acid</button>
-            <button class="swatch" role="radio" aria-checked="false" data-colour="obsidian" style="--c:#1a1a24;--c2:#4a4a5c"><span></span>Obsidian</button>
+            <button class="swatch is-active" role="radio" aria-checked="true" data-colour="ultraviolet" style="--c:#7c3aed;--c2:#c084fc">
+              <span></span>Ultraviolet
+            </button>
+            <button class="swatch" role="radio" aria-checked="false" data-colour="magma" style="--c:#f42c52;--c2:#ff9b6a">
+              <span></span>Solar Magma
+            </button>
+            <button class="swatch" role="radio" aria-checked="false" data-colour="glacier" style="--c:#0ea5e9;--c2:#88f7ff">
+              <span></span>Cryo Glacier
+            </button>
+            <button class="swatch" role="radio" aria-checked="false" data-colour="acid" style="--c:#a3e635;--c2:#eaff8f">
+              <span></span>Hyper Acid
+            </button>
+            <button class="swatch" role="radio" aria-checked="false" data-colour="obsidian" style="--c:#272936;--c2:#71758a">
+              <span></span>Titanium Obsidian
+            </button>
           </div>
-          <p class="colours__name" aria-live="polite">PRISM ONE · <span id="colourName">Ultraviolet</span></p>
+
+          <div class="colour-meta" aria-live="polite">
+            <strong id="colourName">Ultraviolet</strong>
+            <p id="colourTagline">
+              Deep-space anodized violet · Iridescent titanium rails · Electric magenta core
+            </p>
+          </div>
         </div>
       </section>
 
       <!-- SPECS -->
       <section class="specs" id="specs" data-stage="specs">
         <div class="section__head">
-          <p class="eyebrow" data-reveal>Tech specs</p>
-          <h2 class="display display--md" data-reveal>Numbers that <span class="grad">sing.</span></h2>
+          <p class="eyebrow" data-reveal>05 · TECHNICAL SPECIFICATIONS</p>
+          <h2 class="display display--md" data-reveal>Numbers that <span class="grad">resonate.</span></h2>
         </div>
+
         <div class="stats">
-          <div class="stat" data-reveal><span class="stat__num" data-count="40" data-suffix=" mm">0</span><span class="stat__label">Graphene driver</span></div>
-          <div class="stat" data-reveal><span class="stat__num" data-count="60" data-suffix=" h">0</span><span class="stat__label">Battery, ANC on</span></div>
-          <div class="stat" data-reveal><span class="stat__num" data-count="320" data-suffix=" g">0</span><span class="stat__label">Weight</span></div>
-          <div class="stat" data-reveal><span class="stat__num" data-count="8" data-suffix=" mics">0</span><span class="stat__label">Hybrid ANC array</span></div>
+          <div class="stat" data-reveal>
+            <span class="stat__num" data-count="45" data-suffix=" mm">45<small> mm</small></span>
+            <span class="stat__label">Graphene ring-magnet driver</span>
+          </div>
+          <div class="stat" data-reveal>
+            <span class="stat__num" data-count="60" data-suffix=" h">60<small> h</small></span>
+            <span class="stat__label">Continuous ANC playback</span>
+          </div>
+          <div class="stat" data-reveal>
+            <span class="stat__num" data-count="348" data-suffix=" g">348<small> g</small></span>
+            <span class="stat__label">Balanced aluminum &amp; Ti frame</span>
+          </div>
+          <div class="stat" data-reveal>
+            <span class="stat__num" data-count="96" data-suffix=" kHz">96<small> kHz</small></span>
+            <span class="stat__label">24-bit USB-C &amp; wireless DAC</span>
+          </div>
         </div>
+
         <dl class="speclist" data-reveal>
-          <div><dt>Frequency response</dt><dd>5 Hz – 40 kHz</dd></div>
-          <div><dt>Codecs</dt><dd>PRISM-Link, LDAC, aptX Lossless, AAC, SBC</dd></div>
-          <div><dt>Connectivity</dt><dd>Bluetooth 5.4 multipoint · USB-C audio · 3.5 mm</dd></div>
-          <div><dt>Charging</dt><dd>USB-C PD, 0–100% in 60 min</dd></div>
-          <div><dt>Materials</dt><dd>Anodised aluminium cups · forged titanium band · memory-foam cushions</dd></div>
-          <div><dt>In the box</dt><dd>PRISM ONE · braided USB-C cable · 3.5 mm cable · felt travel case</dd></div>
+          <div>
+            <dt>Frequency Response</dt>
+            <dd>4 Hz – 48,000 Hz ( THD &lt; 0.008% @ 1 kHz, 100 dB SPL )</dd>
+          </div>
+          <div>
+            <dt>Audio Silicon</dt>
+            <dd>Dual PRISM S1 10-core neural DSPs (one in each cup · 192,000 combined ops/sec)</dd>
+          </div>
+          <div>
+            <dt>Microphone Array</dt>
+            <dd>8-mic hybrid array (6 outward beamforming + 2 inward ear-canal feedback)</dd>
+          </div>
+          <div>
+            <dt>Connectivity &amp; Codecs</dt>
+            <dd>Bluetooth 5.4 Multipoint · PRISM-Link 1.4 Mbps · LDAC · aptX Lossless · USB-C Audio</dd>
+          </div>
+          <div>
+            <dt>Materials</dt>
+            <dd>6061-T6 anodized aluminum cups · Grade-5 titanium rails · Memory-foam knit cushions</dd>
+          </div>
+          <div>
+            <dt>In the Box</dt>
+            <dd>PRISM ONE · Magnetic hardshell Smart Case · Braided USB-C to USB-C cable · 3.5 mm studio lead</dd>
+          </div>
         </dl>
       </section>
 
       <!-- PRE-ORDER -->
       <section class="preorder" id="preorder" data-stage="preorder">
         <div class="preorder__card" data-reveal>
-          <p class="eyebrow">Shipping March 2027</p>
-          <h2 class="display display--md">Hear it <span class="grad">first.</span></h2>
-          <p class="lede">Reserve PRISM ONE for $349 — $50 off launch price. Fully refundable until it ships.</p>
-          <form class="preorder__form" onsubmit="event.preventDefault(); this.classList.add('is-done');">
+          <p class="eyebrow">FOUNDERS EDITION · SHIPPING NEXT MONTH</p>
+          <h2 class="display display--md">Hear the <span class="grad">impossible.</span></h2>
+          <p class="lede">
+            Reserve PRISM ONE today for $549 with complimentary custom laser engraving,
+            60-day home studio trial, and 3-year PRISM Care+.
+          </p>
+          <form class="preorder__form" id="preorderForm">
             <label class="sr-only" for="email">Email</label>
-            <input id="email" type="email" required placeholder="you@example.com" autocomplete="email" />
-            <button class="btn btn--primary" type="submit">Reserve mine</button>
-            <p class="preorder__done">You're on the list. We'll be in touch.</p>
+            <input id="email" type="email" required placeholder="enter your email for priority allocation" autocomplete="email" />
+            <button class="btn btn--primary" type="submit">Reserve Priority Unit · $549</button>
+            <p class="preorder__done">Allocation reserved. Check your inbox for your studio build sheet.</p>
           </form>
         </div>
       </section>
@@ -262,16 +510,16 @@
     <footer class="footer">
       <div class="footer__brand">
         <span class="logo__mark"></span>
-        <span>PRISM Audio</span>
+        <span>PRISM Audio Lab</span>
       </div>
       <nav class="footer__links" aria-label="Footer">
-        <a href="#inside">Inside</a>
-        <a href="#features">Features</a>
-        <a href="#colours">Colours</a>
+        <a href="#inside">Anatomy</a>
+        <a href="#soundlab">Sound Lab</a>
+        <a href="#features">Acoustics</a>
+        <a href="#colours">Finish</a>
         <a href="#specs">Specs</a>
-        <a href="#preorder">Pre-order</a>
       </nav>
-      <p class="footer__legal">© 2026 PRISM Audio. Designed in Bengaluru, heard everywhere.</p>
+      <p class="footer__legal">© 2026 PRISM Audio Inc. Crafted for listeners who refuse compromise.</p>
     </footer>
 
     <script type="module" src="/src/main.js"></script>
